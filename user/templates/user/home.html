@@ -1,0 +1,39 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block headers %}
+
+{% endblock %}
+
+{% block content %}
+
+#chartdiv {
+    width : 100%;
+    height : 500px;
+    font-size : 11px;
+}
+
+         <!-- Page Content  -->
+         <div id="content-page" class="content-page">
+            <div class="container-fluid">
+               <div class="row">
+                  <home-account v-bind:user="user"
+                      v-bind:accounts="accounts"
+                      ></home-account>
+                  <home-body v-bind:user="user"
+                      :accounts="accounts"
+                  ></home-body>
+               </div>
+            </div>
+         </div>
+
+     <!-- Wrapper END -->
+{% endblock %}
+
+{% block scripts %}
+
+<script src="/static/home/js/components/homeAccount.js"></script>
+<script src="/static/home/js/components/homeBody.js"></script>
+<!-- <script src="/static/user/js/components/profileMenu.js"></script>
+<script src="/static/user/js/components/profileDetail.js"></script> -->
+{% endblock %}

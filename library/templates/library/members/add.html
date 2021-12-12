@@ -1,0 +1,66 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block title %}{{member.name}}{% endblock %}
+{% block page_name %}{% endblock %}
+
+
+
+{% block content %}
+<section class="content">
+    <div class="card card-default">
+      <div class="card-header">
+          <h2>Edit Member</h2>
+        <h3 class="card-title text-primary">{{member.name|title}}</h3>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <form  id="addupdateform"
+            method="POST" enctype="multipart/form-data"
+            onsubmit="confirm('Are you sure?')" action=".">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+                {% csrf_token %}
+              {% bootstrap_form form %}
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+                <img src="{% if member.image %}{{member.image.url}}{% else %}'/static/img/photo2.png'{% endif %}" alt="">
+            </div>
+          </div>
+
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+          <div class="col-md-12">
+              <button class="btn btn-primary float-right" type="submit">Submit</button>
+          </div>
+        </div>
+        <!-- /.row -->
+        </form>
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer">
+        <!-- Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
+        the plugin. -->
+      </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'account/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block head_extra %}
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
+{% endblock %}
+
+  {% block content %}
+  <div class="auth-box-w">
+    <div class="logo-w">
+      <!-- <a href="{% url 'config:index' %}"><img alt="" src="{% if config.logo %}{{config.logo.url}}{% else %} {% static 'img/logo-big.png' %}{% endif %}"></a> -->
+      <!-- <h1 class=""><a href="{% url 'config:index' %}"><span class="brand-name"><img src="/static/img/logo.png" width="250px" class="img-responsive"></span></a></h1> -->
+      <!-- <p class="signup-link">New Here? <a href="{% url 'account_signup' %}">Create an account</a></p> -->
+        <h3 class="">Get started, open an <br/>account with us.</h3>
+        <p class="signup-link">Already have an account? <a href="{{ login_url }}">Log in</a></p>
+    </div>
+
+<form class="text-left" id="signup_form" method="post" action="{% url 'account_signup' %}" enctype="multipart/form-data">
+  {% csrf_token %}
+
+    <!-- <div class="form"> -->
+      {% bootstrap_form form %}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+
+        <!-- <div id="username-field" class="field-wrapper input">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <input id="username" name="username" type="text" class="form-control" placeholder="Username">
+        </div>
+        <div id="email-field" class="field-wrapper input">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-at-sign"><circle cx="12" cy="12" r="4"></circle><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path></svg>
+            <input id="email" name="email" type="text" value="" placeholder="Email">
+        </div>
+        <div id="password-field" class="field-wrapper input mb-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <input id="password" name="password" type="password" value="" placeholder="Password">
+        </div> -->
+        <div class="field-wrapper terms_condition">
+            <div class="n-chk new-checkbox checkbox-outline-primary">
+                <label class="new-control new-checkbox checkbox-outline-primary">
+                  <input type="checkbox" class="new-control-input" required>
+                  <span class="new-control-indicator"></span><span>I agree to the <a href="javascript:void(0);">  terms and conditions </a></span>
+                </label>
+            </div>
+        </div>
+        <div class="d-sm-flex justify-content-between">
+            <!-- <div class="field-wrapper toggle-pass">
+                <p class="d-inline-block">Show Password</p>
+                <label class="switch s-primary">
+                    <input type="checkbox" id="toggle-password" class="d-none">
+                    <span class="slider round"></span>
+                </label>
+            </div> -->
+            <div class="field-wrapper">
+                <button type="submit" class="btn btn-primary" value="">Get Started!</button>
+            </div>
+        </div>
+
+    <!-- </div> -->
+</form>
+</div>
+<script>
+  $(function () {
+    $("#id_date_of_birth").datepicker({
+      format:'YYYY-MM-DD',
+    });
+  });
+</script>
+{% endblock %}

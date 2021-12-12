@@ -1,0 +1,43 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+    <div id="content-page" class="content-page">
+       <div class="container-fluid">
+          <div class="row">
+             <div class="col-sm-12">
+                <div class="iq-card">
+                   <div class="iq-card-body profile-page p-0">
+                      <!-- prifle header -->
+                    <profile-header v-bind:user="user"></profile-header>
+                      <!-- prodile header -->
+                   </div>
+                </div>
+             </div>
+             <div class="col-sm-12">
+                <div class="row">
+                   <!-- prodile-details -->
+                   <profile-menu v-bind:user="user"></profile-menu>
+                   <profile-detail v-bind:user="user"></profile-detail>
+                </div>
+             </div>
+             <div class="col-sm-12 text-center">
+                <img src="/static/images/page-img/page-load-loader.gif" alt="loader" style="height: 100px;">
+             </div>
+          </div>
+       </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="/static/app.js"></script>
+    <script src="/static/user/js/components/profileHeader.js"></script>
+    <script src="/static/user/js/components/profileMenu.js"></script>
+    <script src="/static/user/js/components/profileDetail.js"></script>
+
+    <script>
+      const mountedApp = app.mount('#app')
+    </script>
+{% endblock %}

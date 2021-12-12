@@ -1,0 +1,20 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Issue Book{% endblock %}
+{% block page_name %}Issue Book{% endblock %}
+
+
+
+{% block content %}
+<section class="content">
+    <issue-book :members="{{members}}"
+        :books="{{books}}"
+    ></issue-book>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/library/components/book/IssueBook.js"></script>
+</script>
+{% endblock %}

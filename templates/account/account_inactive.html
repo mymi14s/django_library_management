@@ -1,0 +1,21 @@
+{% extends "account/base.html" %}
+{% load static %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Account Inactive" %}{% endblock %}
+
+{% block content %}
+<div class="auth-box-w">
+  <div class="logo-w">
+
+  <div class="text-center">
+    <h1>{% trans "Account Suspended" %}</h1>
+    <img class="img-responsive" src="/media/rsz_account-suspended.jpg" alt="" height="220px" width="220px">
+
+    <p>{% trans "This account has been suspened." %} Contact <span class="text-primary">{{config.email}}</span></p>
+
+  </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block title %}{{member.name}}{% endblock %}
+{% block page_name %}{% endblock %}
+
+
+
+{% block content %}
+<section class="content">
+    <div class="card card-default">
+      <div class="card-header">
+          <h2>{{title}}</h2>
+        <h3 class="card-title text-primary">{{member.name|title}}</h3>
+        <a class="btn btn-primary float-right" href="/library/books/issue/?member_id={{member.id}}&member_name={{member.name}}">Issue Book</a>
+
+        <!-- <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove">
+            <i class="fas fa-times"></i>
+          </button>
+        </div> -->
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <form  id="addupdateform"
+            method="POST" enctype="multipart/form-data"
+            onsubmit="confirm('Are you sure?')" action=".">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+                {% csrf_token %}
+              {% bootstrap_form form %}
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+                <img src="{% if member.image %}{{member.image.url}}{% else %}'/static/img/photo2.png'{% endif %}" alt="">
+                <hr>
+                <span>Account Balance: <span class="text-danger">Rs. {{member.account_balance}}</span></span>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+          <div class="col-md-12">
+              <button class="btn btn-primary float-right" type="submit">Submit</button>
+          </div>
+        </div>
+        <!-- /.row -->
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Book Issue Records</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table id="transaction-table" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Book</th>
+              <th>Book Bo.</th>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Fee</th>
+              <th>Paid</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for t in transactions %}
+            <tr>
+              <td><a href="{% url 'library:issue_detail' t.id %}">{{t.id}}</a></td>
+              <td>{{t.book}}</td>
+              <td>{{t.book_no}}</td>
+              <td>{{t.posting_date|date}}</td>
+              <td>{{t.type}}</td>
+              <td>{{t.docstatus}}</td>
+              <td>{{t.rental_fee}}</td>
+              <td>{{t.paid}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>Book</th>
+                <th>Book Bo.</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Fee</th>
+                <th>Paid</th>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+
+      <!-- /.card-body -->
+      <div class="card-footer">
+        <!-- Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
+        the plugin. -->
+      </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  $(function () {
+      $("#transaction-table").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+        "order": [[ 0, "desc" ]]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+
+  });
+</script>
+{% endblock %}
