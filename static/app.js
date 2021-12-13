@@ -219,6 +219,44 @@ let fns = {
         setTimeout(()=>{
             $("#modal-lg").modal('hide');
         }, 2000)
+    },
+    $setDatatable: (id, order)=>{
+        setTimeout(()=>{
+            var printCounter = 0;
+            $(id).DataTable( {
+                dom: 'Bfrtip',
+                order: [order],
+                "columnDefs": [
+                    { "width": "35%", "targets": 0 }
+                ],
+                buttons: [
+                    'copy',
+                    {
+                        extend: 'excel',
+                        messageTop: ''
+                    },
+                    {
+                        extend: 'pdf',
+                        messageTop: '',
+                        messageBottom: ''
+                    },
+                    {
+                        extend: 'print',
+                        messageTop: function () {
+                            printCounter++;
+
+                            if ( printCounter === 1 ) {
+                                return 'This is the first time you have printed this document.';
+                            }
+                            else {
+                                return 'You have printed this document '+printCounter+' times';
+                            }
+                        },
+                        messageBottom: null
+                    }
+                ]
+            } );
+        }, 2000);
     }
 }
 app.config.globalProperties = fns;

@@ -27,6 +27,7 @@ def fetch_book_api(request):
             # fetch results
             while True:
                 res = fetch_frappebooks(query, page)
+                print(res)
                 results += res
                 if(len(res)==0):
                     break
@@ -35,7 +36,9 @@ def fetch_book_api(request):
                 else:
                     page += 1
 
+
             results = results[:nos]
+
             # results = list(map(dict, set(tuple(sorted(sub.items())) for sub in results[:nos])))
             return JsonResponse({'type':'fetch','res':results}, safe=False)
         else:

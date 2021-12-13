@@ -205,43 +205,8 @@ app.component('import-book', {
         prepareTable(res){
 
             this.results = res;
-            setTimeout(()=>{
-                var printCounter = 0;
-
-                $('#result-table').DataTable( {
-                    dom: 'Bfrtip',
-                    order: [[ 0, 'asc' ]],
-                    "columnDefs": [
-                        { "width": "35%", "targets": 0 }
-                    ],
-                    buttons: [
-                        'copy',
-                        {
-                            extend: 'excel',
-                            messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.'
-                        },
-                        {
-                            extend: 'pdf',
-                            messageTop: 'Account Statment Head',
-                            messageBottom: 'Account Statement for XYZ'
-                        },
-                        {
-                            extend: 'print',
-                            messageTop: function () {
-                                printCounter++;
-
-                                if ( printCounter === 1 ) {
-                                    return 'This is the first time you have printed this document.';
-                                }
-                                else {
-                                    return 'You have printed this document '+printCounter+' times';
-                                }
-                            },
-                            messageBottom: null
-                        }
-                    ]
-                } );
-            }, 2000);
+            this.$setDatatable('#result-table', [ 0, 'asc' ]);
+    
         }, // end datatabse
         processResponse(res){
             if(res && res.type=='fetch'){

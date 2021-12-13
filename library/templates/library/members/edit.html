@@ -83,9 +83,9 @@
               <td>{{t.book_no}}</td>
               <td>{{t.posting_date|date}}</td>
               <td>{{t.type}}</td>
-              <td>{{t.docstatus}}</td>
+              <td class="text-{% if t.docstatus == 'Draft' %}warning{% else %}primary{% endif %}">{{t.docstatus}}</td>
               <td>{{t.rental_fee}}</td>
-              <td>{{t.paid}}</td>
+              <td class="text-{% if t.paid %}primary{% else %}danger{% endif %}">{{t.paid}}</td>
             </tr>
             {% endfor %}
             </tbody>

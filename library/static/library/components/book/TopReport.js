@@ -20,46 +20,145 @@ app.component('top-reports', {
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-        <form @submit.prevent="fetchBookAPI">
           <div class="row">
-            <div class="col-md-3">
-              <div class="form-group">
-                <label>Number of Books *</label>
-                <input required type="number" class="form-control"
-                name="no_of_books" style="width: 100%;" v-model="filterParams.no_of_books">
-              </div>
+            <div class="col-md-12">
+            <span class="float-right">
+                <button class="btn btn-primary mr-4" @click="refresh"
+                >Refresh</button>
+                <hr>
+            </span>
             </div>
+            <div class="col-md-8">
+            <div class="iq-card">
+               <div class="iq-card-header d-flex justify-content-between">
+                  <div class="iq-header-title">
+                     <h4 class="card-title"></h4>
+                  </div>
 
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Title (Optional)</label>
-                <input type="text" class="form-control"
-                name="title" style="width: 100%;" v-model="filterParams.title">
-              </div>
+               </div>
+               <div class="iq-card-header d-flex justify-content-between">
+
+               </div>
+               <div class="iq-card-body">
+                    <h3>Most Popular Books</h3>
+                  <div class="table-responsive">
+                     <table id="popular_books-table" class="table table-striped table-bordered">
+                        <thead>
+                           <tr>
+                              <th>Title</th>
+                              <th>Avail. QTY</th>
+                              <th>Total QTY</th>
+                              <th>Issued *</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr v-for="r in results.popular_books">
+                              <td><a :href="'/library/books/'+r.id+'/'">[% r.title %]</a></td>
+                              <td>[% r.balance %]</td>
+                              <td>[% r.total %]</td>
+                              <td>[% r.qty %]</td>
+                           </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                           <th>Title</th>
+                           <th>Avail. QTY</th>
+                           <th>Total QTY</th>
+                           <th>Issued *</th>
+                        </tr>
+                        </tfoot>
+                     </table>
+                  </div>
+               </div>
             </div>
-
-            <div class="col-md-3">
-              <div class="form-group">
-                <label>Author(s) (Optional)</label>
-                <input type="text" class="form-control"
-                name="authors" style="width: 100%;" v-model="filterParams.authors">
-              </div>
             </div>
+            <!-- TOP CUSTOMERS -->
+            <div class="col-md-4">
+            <div class="iq-card">
+               <div class="iq-card-header d-flex justify-content-between">
+                  <div class="iq-header-title">
+                     <h4 class="card-title"></h4>
+                  </div>
 
+               </div>
+               <div class="iq-card-header d-flex justify-content-between">
 
+               </div>
+               <div class="iq-card-body">
+                    <h4>Top Paying Customers</h4>
+                  <div class="table-responsive">
+                     <table id="highest_paying-table" class="table table-striped table-bordered">
+                        <tbody>
+                           <tr v-for="r in results.highest_paying">
+                              <td><a :href="'/library/members/'+r.id+'/'">[% r.name %]</a></td>
+                              <td>[% r.rfee %]</td>
+                              <td>[% r.total %]</td>
+                           </tr>
+                        <!-- </tbody> -->
+                     </table>
+                  </div>
+               </div>
+            </div>
+            </div>
+            <!-- TOP CUSTOMERS -->
+            <hr>
           </div>
-              <div class="row">
-              <div class="col-md-12">
-              <!-- <label>.</label> -->
-                  <span class="float-right">
-                      <button class="btn btn-primary mr-4">Fetch</button>
-                  </span>
+          <div class="row">
+
+            <div class="col-md-8">
+
+              <!-- BAR CHART -->
+              <div class="card card-success">
+                <div class="card-header">
+                  <h3 class="card-title">Most Popular Books Chart</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="chart">
+                    <canvas id="barChart" style="min-height: 250px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
+                  </div>
+                </div>
+                <!-- /.card-body -->
               </div>
+              <!-- /.card -->
+
+            </div>
+            <!-- /.col (LEFT) -->
+            <div class="col-md-4">
+              <!-- PIE CHART -->
+              <div class="card card-danger">
+                <div class="card-header">
+                  <h3 class="card-title">Top Customer Chart</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <canvas id="pieChart" style="min-height: 250px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
+                </div>
+                <!-- /.card-body -->
               </div>
-          </form>
+              <!-- /.card -->
+
+            </div>
+          </div>
           <!-- /.row -->
 
-          <h5>Fetch books will be listed below.</h5>
+          <!-- <h5>Fetch books will be listed below.</h5> -->
           <div class="row">
             <div class="col-12 col-sm-6">
 
@@ -75,60 +174,13 @@ app.component('top-reports', {
         <!-- /.card-body -->
         <div class="card-footer">
           <!-- message here -->
-          <span class="float-right">
-              <button class="btn btn-warning mr-4" @click="saveBooks"
-              v-show="results.length>1 ? true : false">Save Books</button>
-          </span>
+
         </div>
       </div>
       <!-- /.card -->
       <div class="row">
          <div class="col-sm-12">
-            <div class="iq-card">
-               <div class="iq-card-header d-flex justify-content-between">
-                  <div class="iq-header-title">
-                     <h4 class="card-title"></h4>
-                  </div>
 
-               </div>
-               <div class="iq-card-header d-flex justify-content-between">
-
-               </div>
-               <div class="iq-card-body">
-                  <div class="table-responsive">
-                     <table id="result-table" class="table table-striped table-bordered">
-                        <thead>
-                           <tr>
-                              <th>Title</th>
-                              <th>Page(s)</th>
-                              <th>ISBN</th>
-                              <th>Author(s)</th>
-                              <th>Publisher</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr v-for="r in results">
-                              <td>[% r.title %]</td>
-                              <td>[% r['  num_pages'] %]</td>
-                              <td>[% r.isbn %]</td>
-                              <td>[% r.authors %]</td>
-                              <td>[% r.publisher %]</td>
-                           </tr>
-                        </tbody>
-                        <tfoot>
-                           <tr>
-                               <th>Title</th>
-                               <th>Page(s)</th>
-                               <th>ISBN</th>
-                               <th>Author(s)</th>
-                               <th>Publisher</th>
-
-                           </tr>
-                        </tfoot>
-                     </table>
-                  </div>
-               </div>
-            </div>
          </div>
       </div>
 
@@ -140,12 +192,7 @@ app.component('top-reports', {
     },
     data(){
         return {
-            filterParams: {
-                no_of_books: null,
-                title: '',
-                authors: ''
-            },
-            results: []
+            results: {}
         }
     },
     computed: {
@@ -155,115 +202,127 @@ app.component('top-reports', {
         // }
     },
     methods: {
-        async fetchBookAPI(){
-            let proceed = await this.$confirm();
-            if(proceed){
-                $('#result-table').DataTable().destroy();
-                this.results = []
-                // process query
-                let filters = '';
-                if(this.title && this.filterParams.authors){
-                    filters = `title=${this.filterParams.title}&authors={this..filterParamsauthors}`;
-                } else if(this.filterParams.authors){
-                    filters = `authors=${this.filterParams.authors}`;
-                } else if(this.filterParams.title){
-                    filters = `title=${this.filterParams.title}`;
+        async refresh(){
+            $('#popular_books-table').DataTable().destroy();
+            // $('#highest_paying-table').DataTable().destroy();
+
+            this.results = []
+            const res = await $.ajax({
+                url: `/library/reports/top-report/`,
+                type: "POST",
+                headers: {
+                    "X-CSRFToken": this.$getCookie("csrftoken"),
+                },
+                data: {
                 }
-                const res = await $.ajax({
-                    url: `/library/api/fetchbooks/`,
-                    type: "POST",
-                    headers: {
-                        "X-CSRFToken": this.$getCookie("csrftoken"),
-                    },
-                    data: {
-                        nos: this.filterParams.no_of_books,
-                        filters: filters,
-                        fetch: true
-                    }
-                })
-                // console.log(res.res[0])
-                this.processResponse(res);
-            }
-        },
-        async saveBooks(){
-            let proceed = await this.$confirm();
-            if(proceed){
-                const res = await $.ajax({
-                    url: `/library/api/fetchbooks/`,
-                    type: "POST",
-                    headers: {
-                        "X-CSRFToken": this.$getCookie("csrftoken"),
-                    },
-                    data: {
-                        import_books: JSON.stringify(this.results)
-                    }
-                })
-                // console.log(res.res[0])
-                this.processResponse(res);
+            })
+            if(res){
+                this.prepareTable(res);
+            } else {
+                this.$notify('error', 'An error occured!')
             }
         },
         prepareTable(res){
-
             this.results = res;
-            setTimeout(()=>{
-                var printCounter = 0;
+            console.log(this.results)
+            this.$setDatatable('#popular_books-table', [ 3, 'desc' ]);
+            // this.$setDatatable('#highest_paying-table', [ 1, 'desc' ]);
+            this.setChart(res);
 
-                $('#result-table').DataTable( {
-                    dom: 'Bfrtip',
-                    order: [[ 0, 'asc' ]],
-                    "columnDefs": [
-                        { "width": "35%", "targets": 0 }
-                    ],
-                    buttons: [
-                        'copy',
-                        {
-                            extend: 'excel',
-                            messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.'
-                        },
-                        {
-                            extend: 'pdf',
-                            messageTop: 'Account Statment Head',
-                            messageBottom: 'Account Statement for XYZ'
-                        },
-                        {
-                            extend: 'print',
-                            messageTop: function () {
-                                printCounter++;
-
-                                if ( printCounter === 1 ) {
-                                    return 'This is the first time you have printed this document.';
-                                }
-                                else {
-                                    return 'You have printed this document '+printCounter+' times';
-                                }
-                            },
-                            messageBottom: null
-                        }
-                    ]
-                } );
-            }, 2000);
-        }, // end datatabse
-        processResponse(res){
-            if(res && res.type=='fetch'){
-                console.log(res.res)
-                this.prepareTable(res.res)
-            } else if(res && res.type=='import' && res.status==200){
-                this.$notify('success', 'Import Complete');
-                setTimeout(()=>{
-                    window.location.href='/library/books/list/';
-                }, 2000)
-            } else {
-                this.$notify('Error', 'An error occured!.')
+        },
+        setChart(res){
+            // PIECHART
+            var pieData        = {
+              labels: res.highest_paying.map(a => a.name),
+              datasets: [
+                {
+                  data: res.highest_paying.map(a => a.rfee),
+                  backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef',
+                      '#3c8dbc', '#d2d6de', '#212F3C', '#78281F', '#9F8681', '#9D5344'],
+                }
+              ]
             }
+
+            var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+            var pieData        = pieData;
+            var pieOptions     = {
+              maintainAspectRatio : false,
+              responsive : true,
+            }
+            //Create pie or douhnut chart
+            // You can switch between pie and douhnut using the method below.
+            var pieChart = new Chart(pieChartCanvas, {
+              type: 'pie',
+              data: pieData,
+              options: pieOptions
+            })
+
+            // BARCHART
+            var bChartData = {
+              labels  : res.popular_books.map(a => a.title),
+              datasets: [
+                {
+                  label               : 'Balance',
+                  backgroundColor     : 'rgba(60,141,188,0.9)',
+                  borderColor         : 'rgba(60,141,188,0.8)',
+                  pointRadius          : true,
+                  pointColor          : '#3b8bba',
+                  pointStrokeColor    : 'rgba(60,141,188,1)',
+                  pointHighlightFill  : '#fff',
+                  pointHighlightStroke: 'rgba(60,141,188,1)',
+                  data                : res.popular_books.map(a => a.balance)
+                },
+                {
+                  label               : 'Quantity',
+                  backgroundColor     : 'rgba(210, 214, 222, 1)',
+                  borderColor         : 'rgba(210, 214, 222, 1)',
+                  pointRadius         : true,
+                  pointColor          : 'rgba(210, 214, 222, 1)',
+                  pointStrokeColor    : '#c1c7d1',
+                  pointHighlightFill  : '#fff',
+                  pointHighlightStroke: 'rgba(220,220,220,1)',
+                  data                : res.popular_books.map(a => a.total)
+                },
+                {
+                  label               : 'Issued',
+                  backgroundColor     : 'rgba(120, 150, 10, 1)',
+                  borderColor         : 'rgba(120, 150, 10, 1)',
+                  pointRadius         : true,
+                  pointColor          : 'rgba(120, 150, 10, 1)',
+                  pointStrokeColor    : '#c1aed0',
+                  pointHighlightFill  : '#fff',
+                  pointHighlightStroke: 'rgba(120, 150, 10,1)',
+                  data                : res.popular_books.map(a => a.qty)
+                }
+              ]
+            }
+
+            var barChartCanvas = $('#barChart').get(0).getContext('2d')
+            var barChartData = $.extend(true, {}, bChartData)
+            var temp0 = bChartData.datasets[0]
+            var temp1 = bChartData.datasets[1]
+            barChartData.datasets[0] = temp1
+            barChartData.datasets[1] = temp0
+
+            var barChartOptions = {
+              responsive              : true,
+              maintainAspectRatio     : false,
+              datasetFill             : false
+            }
+
+            var barChart = new Chart(barChartCanvas, {
+              type: 'bar',
+              data: barChartData,
+              options: barChartOptions
+            })
+        },
+        setBarChart(){
+
         }
     },
     mounted(){
-
-        if(this.book_no){
-            // alert()
             setTimeout(()=>{
-                // this.getBookDetail()
+                this.refresh();
             }, 2000)
-        }
     }
 })

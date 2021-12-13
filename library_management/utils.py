@@ -1,4 +1,4 @@
-import time, json
+import time, json, requests
 from django.db import connection
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.http import Http404
