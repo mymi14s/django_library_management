@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.contrib.auth import get_user_model
 from library_management.utils import (
     qset_list, qset_item, querydb, fetch_frappebooks,
+    result_paginator,
 )
 from .models import (
     Book, BookStockLedger, BookTransaction, BookTransactionHistory,
@@ -16,18 +17,6 @@ from .forms import (
 )
 # Create your views here.
 
-def result_paginator(request, results):
-    page = request.GET.get('page', 1) # get page number
-    paginator = Paginator(results, 12) # return 12 results per page
-
-    try:
-        res = paginator.page(page)
-    except PageNotAnInteger:
-        res = paginator.page(1)
-    except EmptyPage:
-        res = paginator.page(paginator.num_pages)
-
-    return res
 
 @login_required
 def home(request):
@@ -71,8 +60,6 @@ def book_detail(request, book_no):
             print('POST',request.POST, request.FILES)
             # update book
             form = UpdateBookForm(request.POST, request.FILES, instance=context['book'])
-            # print(form)
-
             if form.is_valid():
                 print('VALID')
                 post = form.save(commit=False)
@@ -243,7 +230,7 @@ def edit_member(request, id):
     }
     return render(request, template_name, context)
 
-
+@login_required
 def import_books(request):
     template_name = 'library/import/import.html'
     context = {}
@@ -251,6 +238,7 @@ def import_books(request):
     return render(request, template_name, context)
 
 
+@login_required
 def top_report(request):
     template_name = 'library/reports/top_report.html'
     context = {}

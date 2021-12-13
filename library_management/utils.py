@@ -1,5 +1,6 @@
 import time, json, requests
 from django.db import connection
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.http import Http404
 from django.core.mail import send_mail
@@ -59,3 +60,18 @@ def fetch_frappebooks(query, page):
         return []
     except Exception as e:
         return []
+
+
+
+def result_paginator(request, results):
+    page = request.GET.get('page', 1) # get page number
+    paginator = Paginator(results, 12) # return 12 results per page
+
+    try:
+        res = paginator.page(page)
+    except PageNotAnInteger:
+        res = paginator.page(1)
+    except EmptyPage:
+        res = paginator.page(paginator.num_pages)
+
+    return res

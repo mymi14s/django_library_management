@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Books</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/static/plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/static/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition lockscreen">
+
+            <section class="content">
+              <div class="container-fluid">
+                      <div class="row">
+                          <!-- <h2 class="text-center display-4">Search</h2> -->
+                          <div class="card-header">
+                          <div class="card-tools">
+                              <div class="col-md-12 offset-md-2">
+                                  <form method='GET' action=".">
+                                      <div class="input-group">
+                                          <input type="search" class="form-control form-control-lg"
+                                          placeholder="Search books"
+                                          value="{{request.GET.q}}" name="q">
+                                          <div class="input-group-append">
+                                              <button type="submit" class="btn btn-lg btn-default">
+                                                  <i class="fa fa-search"></i>
+                                              </button>
+                                          </div>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                          <!-- /.card-tools -->
+                        </div>
+
+                      </div>
+                  <!-- <div class="card card-solid"> -->
+
+                    <div class="row">
+                        {% for book in books %}
+                      <div class="col-md-4">
+                        <!-- Box Comment -->
+                        <div class="card card-widget">
+                          <div class="card-header">
+                              <div class="row">
+                                  <div class="user-block text-primary">
+                                      <!-- <img class="img-circle" src="{% static 'static/dist/img/user1-128x128.jpg' %}" alt="User Image"> -->
+                                      <span class="username"><a href="{% url 'library:book_detail' book.book_no %}"><h5>{{book.title|truncatechars:40}}</h5></a></span>
+                                  </div>
+                              </div>
+                            <div class="row">
+                                <span class="col-md-6 float-left">#{{book.book_no}}</span>
+                                <span class="col-md-6 float-right">Bal Qty. {{book.balance}}</span>
+
+                            </div>
+                          </div>
+                          <!-- /.card-header -->
+                          <div class="card-body">
+                            <img class="img-fluid pad img-responsive"
+                                src="{% if book.image %}{{book.image.url}}{% else %}{% static 'img/book.jpeg' %}{% endif %}"
+                                alt="Photo"
+                                style="display: block;
+                                  margin-left: auto;
+                                  margin-right: auto;
+                                  width: 50%;
+                                  height: 150px">
+
+                            <!-- <p>I took this photo this morning. What do you guys think?</p> -->
+                          </div>
+                          <!-- /.card-body -->
+                          <div class="card-footer card-comments">
+                            <!-- /.card-comment -->
+                            <div class="card-comment">
+                              <!-- User image -->
+
+                              <div class="comment-text">
+                                <span class="username">
+                                  ISBN - <b>{{book.isbn}}</b>
+                                  <span class="text-muted float-right"><b>Page(s) - {{book.page}}</b></span>
+                                </span><!-- /.username -->
+                                {% if book.description %}
+                                    {{book.description|truncatechars:150}}...
+                                {% endif %}
+                              </div>
+                              <!-- /.comment-text -->
+                            </div>
+                            <!-- /.card-comment -->
+                          </div>
+
+                        </div>
+                        <!-- /.card -->
+                      </div>
+                      {% empty %}
+                      <h1>No book found</h1>
+                      {% endfor %}
+                    </div>
+
+
+                    <!-- /.card-body -->
+                    <div class="row">
+                      <nav aria-label="Contacts Page Navigation">
+                        <!-- <ul class="pagination justify-content-center m-0">
+                          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item"><a class="page-link" href="#">4</a></li>
+                          <li class="page-item"><a class="page-link" href="#">5</a></li>
+                          <li class="page-item"><a class="page-link" href="#">6</a></li>
+                          <li class="page-item"><a class="page-link" href="#">7</a></li>
+                          <li class="page-item"><a class="page-link" href="#">8</a></li>
+                          </ul> -->
+                          {% if books.has_other_pages %}
+                            <ul class="pagination justify-content-center m-0">
+                              {% if books.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?q={{q}}&page={{ books.previous_page_number }}">&laquo;</a></li>
+                              {% else %}
+                                <li class="disabled page-item"><a class="page-link" href="#"><span>&laquo;</span></a></li>
+                              {% endif %}
+                              {% for i in books.paginator.page_range %}
+                                {% if books.number == i %}
+                                  <li class="active page-item"><a class="page-link" href="#">{{i}}</a><span class="sr-only">(current)</span></li>
+                                {% else %}
+                                  <li class="page-item"><a class="page-link" href="?q={{q}}&page={{ i }}">{{i}}</a></li>
+                                {% endif %}
+                              {% endfor %}
+                              {% if books.has_next %}
+                                <li class="page-item"><a class="page-link" href="?q={{q}}&page={{ books.next_page_number }}">&raquo;</a></li>
+                              {% else %}
+                                <li class="disabled page-item"><a class="page-link" href="#"><span>&raquo;</span></a></li>
+                              {% endif %}
+                            </ul>
+                          {% endif %}
+                      </nav>
+                    </div>
+                    <!-- /.card-footer -->
+                  <!-- </div> -->
+              </div><!--/. container-fluid -->
+            </section>
+
+<!-- jQuery -->
+<script src="/static/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

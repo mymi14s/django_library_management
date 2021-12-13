@@ -1,6 +1,7 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
 
+{% block title %}Books{% endblock %}
 {% block page_name %}Books{% endblock %}
 
 
@@ -8,7 +9,6 @@
 <section class="content">
   <div class="container-fluid">
       <div class="row">
-          <div class="row">
               <!-- <h2 class="text-center display-4">Search</h2> -->
               <div class="card-header">
               <div class="card-tools">
@@ -30,7 +30,6 @@
               <!-- /.card-tools -->
             </div>
 
-          </div>
       </div>
       <!-- <div class="card card-solid"> -->
 
@@ -76,7 +75,9 @@
                       ISBN - <b>{{book.isbn}}</b>
                       <span class="text-muted float-right"><b>Page(s) - {{book.page}}</b></span>
                     </span><!-- /.username -->
-                        {{book.description|truncatechars:150}}...
+                        {% if book.description %}
+                            {{book.description|truncatechars:150}}...
+                        {% endif %}
                   </div>
                   <!-- /.comment-text -->
                 </div>
@@ -95,16 +96,6 @@
         <!-- /.card-body -->
         <div class="row">
           <nav aria-label="Contacts Page Navigation">
-            <!-- <ul class="pagination justify-content-center m-0">
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" href="#">5</a></li>
-              <li class="page-item"><a class="page-link" href="#">6</a></li>
-              <li class="page-item"><a class="page-link" href="#">7</a></li>
-              <li class="page-item"><a class="page-link" href="#">8</a></li>
-              </ul> -->
               {% if books.has_other_pages %}
                 <ul class="pagination justify-content-center m-0">
                   {% if books.has_previous %}

@@ -1,9 +1,33 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
+from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
+from library_management.utils import (
+    qset_list, qset_item, querydb, fetch_frappebooks,
+    result_paginator,
+)
 from config.models import Setting
+from library.models import Book
 
 # Create your views here.
+
+def guestview(request):
+    template_name = 'config/guestview.html'
+    context = {}
+    if request.method == 'GET':
+        query = request.GET.get('q', '')
+        results = Book.objects.filter(
+            Q(title__icontains=query)|Q(authors__icontains=query)
+        ).order_by('title')
+        books = result_paginator(request, results)
+
+        context = {
+            'books': books,
+            'q': query,
+        }
+    return render(request, template_name, context)
+
 def index(request):
     return redirect('/accounts/login')
 
