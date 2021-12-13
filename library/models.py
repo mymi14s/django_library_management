@@ -33,7 +33,7 @@ class Book(models.Model):
     book_no = models.CharField(max_length=10, unique=True, blank=True, null=True,)
     title = models.CharField(max_length=255)
     authors = models.TextField()
-    isbn = models.CharField(max_length=25)
+    isbn = models.CharField(max_length=25, unique=True)
     publisher = models.CharField(max_length=30)
     page = models.PositiveIntegerField()
     description = models.TextField(blank=True, null=True)

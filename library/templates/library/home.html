@@ -1,5 +1,6 @@
 {% extends 'dashboard/base.html' %}
 
+{% block title %}Library Dashboard{% endblock %}
 {% block page_name %}Library Dashboard{% endblock %}
 
 
@@ -24,15 +25,16 @@
       </div>
       <!-- /.col -->
       <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box mb-3">
-          <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+          <a href="/library/members/list/">
+              <div class="info-box">
+                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
 
-          <div class="info-box-content">
-            <span class="info-box-text">Likes</span>
-            <span class="info-box-number">41,410</span>
-          </div>
-          <!-- /.info-box-content -->
-        </div>
+                    <div class="info-box-content">
+                      <span class="info-box-text"><h2>Members</h2></span>
+                    </div>
+                <!-- /.info-box-content -->
+              </div>
+          </a>
         <!-- /.info-box -->
       </div>
       <!-- /.col -->
@@ -41,15 +43,16 @@
       <div class="clearfix hidden-md-up"></div>
 
       <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box mb-3">
-          <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+          <a href="/library/books/import/">
+              <div class="info-box">
+                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-arrow-down"></i></span>
 
-          <div class="info-box-content">
-            <span class="info-box-text">Sales</span>
-            <span class="info-box-number">760</span>
-          </div>
-          <!-- /.info-box-content -->
-        </div>
+                    <div class="info-box-content">
+                      <span class="info-box-text"><h2>Import Books</h2></span>
+                    </div>
+                <!-- /.info-box-content -->
+              </div>
+          </a>
         <!-- /.info-box -->
       </div>
       <!-- /.col -->

@@ -1,5 +1,5 @@
-import time
-import json
+import time, json
+from django.db import connection
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.http import Http404
 from django.core.mail import send_mail
@@ -38,3 +38,24 @@ def get_countries():
 
 def convert_datestr(d):
     return datetime.strptime(d.split('T')[0], '%Y-%m-%d')
+
+def querydb(query):
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        columns = [col[0] for col in cursor.description]
+        return [
+            dict(zip(columns, row))
+            for row in cursor.fetchall()
+        ]
+
+def fetch_frappebooks(query, page):
+    try:
+        res = requests.get(
+            f'https://frappe.io/api/method/frappe-library?page={page}{query}',
+            verify=False, timeout=10
+        )
+        if(res.status_code==200):
+            return res.json().get('message')
+        return []
+    except Exception as e:
+        return []

@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth import get_user_model
 from library_management.utils import (
-    qset_list, qset_item
+    qset_list, qset_item, querydb, fetch_frappebooks,
 )
 from .models import (
     Book, BookStockLedger, BookTransaction, BookTransactionHistory,
@@ -241,4 +241,43 @@ def edit_member(request, id):
         'form': MemberForm(instance=member),
         'transactions': BookTransaction.objects.filter(member=member.id).order_by('-id')
     }
+    return render(request, template_name, context)
+
+
+def import_books(request):
+    template_name = 'library/import/import.html'
+    context = {}
+
+    return render(request, template_name, context)
+
+
+def top_report(request):
+    template_name = 'library/reports/top_report.html'
+    context = {}
+    if(request.method=='POST'):
+        # TOP CUSTOMERS
+        popular_books_query = querydb(
+            """
+                SELECT b.id, t.title, b.balance, b.qty as total, sum(t.qty) as qty
+                FROM `library_book` b
+                JOIN `library_booktransaction` t ON t.book_id=b.id
+                WHERE t.docstatus='Submitted'
+                GROUP BY t.title ORDER BY qty DESC
+                LIMIT 10
+            ;"""
+        )
+        highest_paying_query = querydb(
+            """
+                SELECT m.id, m.name, sum(t.rental_fee) as rfee FROM `library_booktransaction` t
+                JOIN `library_member` m ON t.member_id=m.id
+                WHERE t.docstatus='Submitted' AND paid=1
+                GROUP BY m.name ORDER BY rfee DESC
+                LIMIT 10
+            ;"""
+        )
+        return JsonResponse({
+            'popular_books':popular_books_query,
+            'highest_paying':highest_paying_query
+        }, safe=False)
+
     return render(request, template_name, context)

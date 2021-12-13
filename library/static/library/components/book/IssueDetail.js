@@ -62,7 +62,9 @@ app.component('issue-detail', {
                 width: 60%;
                 height: 250px;" class="product-image" alt="Product Image">
             </div>
-              <h3 class="my-3">[% member.name %]</h3>
+                <p class="text-center">
+                  <a :href="'/library/members/'+member.id+'/'"><h3 class="my-3 text-primary">[% member.name %]</h3></a>
+                </p>
               <p>
                   <table class="table">
                       <thead>
@@ -88,7 +90,9 @@ app.component('issue-detail', {
               width: 60%;
               height: 250px;" class="product-image" alt="Product Image">
           </div>
-            <h3 class="my-3">[% book.title %]</h3>
+          <p class="text-center">
+              <a :href="'/library/books/'+book.book_no+'/'"><h3 class="my-3 text-primary">[% book.title %]</h3></a>
+          </p>
             <p>
                 <table class="table">
                     <thead>

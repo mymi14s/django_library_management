@@ -4,7 +4,6 @@
 {% block page_name %}Books{% endblock %}
 
 
-
 {% block content %}
 <section class="content">
   <div class="container-fluid">
@@ -44,7 +43,7 @@
                   <div class="row">
                       <div class="user-block text-primary">
                           <!-- <img class="img-circle" src="{% static 'static/dist/img/user1-128x128.jpg' %}" alt="User Image"> -->
-                          <span class="username"><a href="{% url 'library:book_detail' book.book_no %}"><h3>{{book.title}}</h3></a></span>
+                          <span class="username"><a href="{% url 'library:book_detail' book.book_no %}"><h5>{{book.title|truncatechars:40}}</h5></a></span>
                       </div>
                   </div>
                 <div class="row">
@@ -56,7 +55,7 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <img class="img-fluid pad img-responsive"
-                    src="{% if book.image %}{{book.image.url}}{% else %}{% static 'dist/img/photo2.png' %}{% endif %}"
+                    src="{% if book.image %}{{book.image.url}}{% else %}{% static 'img/book.jpeg' %}{% endif %}"
                     alt="Photo"
                     style="display: block;
                       margin-left: auto;
