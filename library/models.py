@@ -214,5 +214,6 @@ class Member(models.Model):
     def save(self, *args, **kwargs):
         if not self.name and self.user:
             self.name = self.user.get_full_name()
+        # if(not self.account_balance)
         self.updated_at = timezone.now()
         return super().save(*args, **kwargs)
