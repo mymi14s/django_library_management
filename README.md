@@ -1,57 +1,46 @@
 # Django Library Management
 
-Vue-based AdminLTE dashboard for Frappe and ERPNext
+A libray management web app that can be used to manage books, members, transaction.
 
 ## Features
-- AUTHENTICATION: Login is inbuilt by default and can be used as below:
-    - this.$frappe.login({usr:'user': pwd:'password'}) //token based authentication is used     on successful login.
-- API: Access data using:
-    - this.$frappe.get_doc(doctype, docname)
-    - this.$frappe.get_list(doctype, filters) // filters is optional
-    - this.$frappe.new_doc(doctype, body) //body = {}
-    - this.$frappe.update_doc(doctype, docname, body)
-    - this.$frappe.delete_doc(doctype, docname)
-    - this.$frappe.getPDF(doctype, docname) // OPTIONAL: format, Standard,
-                no_letterhead, letterhead, lang
-- REUSABLE COMPONENTS:
-    - DataTable // for generating doctype data list, auto repackage datatable.
-- UTILITIES:
-    - formatCurrency(amount, currency)
-    - this.popIt.error(title, message) // show error modal
-    - this.popIt.success(title, message) // show success modal
-#### NOTE
-**this** keywork can be directly accessed in VUEJS component,
-this.$frappe can be redefined as let frappe = this.$frappe
+- Books:
+    - Add
+    - Edit
+    - search
+    - Issue (issue, return, payment)
 
-## PROJECT SETUP
-- INITIAL CONFIGURATION
-    - add .appConfig.json to the root folder (same location with package.json)
-    - Add configuration in the format
-        {
-            "domain": "https://exampledomain.com",
-            "frappe_custom_app":"frappeauth_app"
-        }
-    - frappeauth_app may remain unchanged except you have a custom authentication app.
-    - frappeauth_app is **REQUIRED** to in your frappe/erpnext server, install from
-        **https://github.com/mymi14s/frappeauth_app**
 
-- NODE SETUP
-```
-npm install
-```
+- Members:
+    - Add
+    - Edit
+    - Search
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- API:
+    - Import books from https://frappe.io/api/method/frappe-library?page=2&title=and
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- Reports:
+    - Most popular books
+    - Highest paying customers
+    - Charts (bar/pie)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#### REQUIREMENTS
+- Python 3.8
+- DJango 3
+
+## Installation
+- ```git clone https://github.com/mymi14s/django_library_management```
+- ```cd django_library_management```
+- ```pip install -r requirements```
+- ```python manage.py migrate```
+- ```python manage.py runserver```
+
+## Demo
+Currently hosted on pythonanywhere.com
+[https://djangolibrarym.pythonanywhere.com](https://djangolibrarym.pythonanywhere.com)
+
+-Username/Email: admin@admin.com
+-Password: admin
+
 
 ## Screenshot
 ## LOGIN
