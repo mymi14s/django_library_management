@@ -250,7 +250,7 @@ def top_report(request):
                 FROM library_book b
                 JOIN library_booktransaction t ON t.book_id=b.id
                 WHERE t.docstatus='Submitted'
-                GROUP BY t.title ORDER BY qty DESC
+                GROUP BY t.title, b.id ORDER BY qty DESC
                 LIMIT 10
             ;"""
         )
@@ -260,7 +260,7 @@ def top_report(request):
                 library_booktransaction t
                 JOIN library_member m ON t.member_id=m.id
                 WHERE t.docstatus='Submitted' AND paid=1
-                GROUP BY m.name ORDER BY rfee DESC
+                GROUP BY m.id, m.name ORDER BY rfee DESC
                 LIMIT 10
             ;"""
         )
