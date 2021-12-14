@@ -36,7 +36,7 @@ A libray management web app that can be used to manage books, members, transacti
 
 ## Demo
 Currently hosted on pythonanywhere.com
-[https://djangolibrarym.pythonanywhere.com](https://djangolibrarym.pythonanywhere.com)
+[https://djangolibrarym.herokuapp.com](https://djangolibrarym.herokuapp.com)
 
 -Username/Email: admin@admin.com
 -Password: admin
