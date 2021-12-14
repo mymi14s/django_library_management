@@ -47,25 +47,25 @@ Currently hosted on pythonanywhere.com
 ![Dashboard](https://raw.githubusercontent.com/mymi14s/django_library_management/master/screenshots/dashboard.png)
 
 ## Book List
-![Books](https://github.com/mymi14s/django_library_management/tree/master/screenshots/books.png?raw=true "Books")
+![Books](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/books.png)
 
 ## Book Info
-![Book](https://github.com/mymi14s/django_library_management/tree/master/screenshots/book.png?raw=true "Book")
+![Book](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/book.png)
 
 ## Issue Book
-![Issue](https://github.com/mymi14s/django_library_management/tree/master/screenshots/issuebook.png?raw=true "Issue")
+![Issue](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/issuebook.png)
 
 ## Books issued to a member
-![Issues](https://github.com/mymi14s/django_library_management/tree/master/screenshots/memberissues.png?raw=true "Issues")
+![Issues](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/memberissues.png)
 
 ## Reports Table
-![Table](https://github.com/mymi14s/django_library_management/tree/master/screenshots/reporttable.png?raw=true "Table")
+![Table](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/reporttable.png)
 
 ## Reports Chart
-![Chart](https://github.com/mymi14s/django_library_management/tree/master/screenshots/reportchart.png?raw=true "Chart")
+![Chart](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/reportchart.png)
 
 ## Import Books
-![Import](https://github.com/mymi14s/django_library_management/tree/master/screenshots/import.png?raw=true "Import")
+![Import](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/import.png)
 
 ## Members
-![Members](https://github.com/mymi14s/django_library_management/tree/master/screenshots/members.png?raw=true "Members")
+![Members](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/members.png)
