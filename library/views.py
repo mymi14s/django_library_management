@@ -259,7 +259,7 @@ def top_report(request):
                 SELECT m.id, m.name, sum(t.rental_fee) as rfee FROM
                 library_booktransaction t
                 JOIN library_member m ON t.member_id=m.id
-                WHERE t.docstatus='Submitted' AND paid=1
+                WHERE t.docstatus='Submitted' AND paid=true
                 GROUP BY m.id, m.name ORDER BY rfee DESC
                 LIMIT 10
             ;"""
