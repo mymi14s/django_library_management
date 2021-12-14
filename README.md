@@ -44,7 +44,7 @@ Currently hosted on pythonanywhere.com
 
 ## Screenshot
 ## Dashboard
-![Login](https://github.com/mymi14s/django_library_management/tree/master/screenshots/dashboard.png?raw=true "Dashboard")
+![Dashboard](https://github.com/mymi14s/django_library_management/tree/master/screenshots/dashboard.png?raw=true "Dashboard")
 
 ## Book List
 ![Books](https://github.com/mymi14s/django_library_management/tree/master/screenshots/books.png?raw=true "Books")
