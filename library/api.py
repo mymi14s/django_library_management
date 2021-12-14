@@ -52,7 +52,6 @@ def fetch_book_api(request):
                     )
                 status = 200
             except Exception as e:
-                print(type(import_books), import_books)
                 print(e)
                 status = 500
             return JsonResponse({'type':'import', 'status':status}, safe=False)
