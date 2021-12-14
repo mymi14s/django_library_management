@@ -62,7 +62,7 @@ Currently hosted on pythonanywhere.com
 ![Table](https://raw.githubusercontent.com/mymi14s/django_library_management/master/screenshots/reporttable.png)
 
 ## Reports Chart
-![Chart](https://raw.githubusercontent.com/mymi14s/django_library_management/master/screenshots/reportchart.png)
+![Chart](https://raw.githubusercontent.com/mymi14s/django_library_management/master/screenshots/reportcharts.png)
 
 ## Import Books
 ![Import](https://raw.githubusercontent.com/mymi14s/django_library_management/master/screenshots/import.png)
