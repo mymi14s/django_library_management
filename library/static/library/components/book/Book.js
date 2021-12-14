@@ -119,11 +119,7 @@ app.component('book-detail', {
                     @process-form="processForm"
                     :btn_name="'Update Book'"
                 ></book-addedit>
-                <issue-book
-                    :book="book"
-                    @process-form="processForm"
-                    :btn_name="'Update Book'"
-                ></issue-book>
+                
               </p>
             </div>
             <div class="modal-footer justify-content-between">
@@ -135,34 +131,6 @@ app.component('book-detail', {
         </div>
         <!-- /.modal-dialog -->
       </div>
-
-      <div class="modal fade" id="issue-book-modal">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Large Modal</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p>
-                <issue-book
-                    :book="book"
-                    @process-form="processForm"
-                ></issue-book>
-              </p>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-
     `,
     props:{
         book_no: {

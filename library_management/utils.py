@@ -1,6 +1,8 @@
 import time, json, requests
 from django.db import connection
-from django.core.paginator import Paginator
+from django.core.paginator import (
+    Paginator, PageNotAnInteger, EmptyPage
+)
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.http import Http404
 from django.core.mail import send_mail

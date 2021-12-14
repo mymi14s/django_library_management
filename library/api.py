@@ -18,7 +18,6 @@ def fetch_book_api(request):
             nos = int(nos)
             page, results = 1, []
 
-            print(nos, filters)
             # processfilters
             query = f""
             if(filters):
@@ -27,7 +26,6 @@ def fetch_book_api(request):
             # fetch results
             while True:
                 res = fetch_frappebooks(query, page)
-                print(res)
                 results += res
                 if(len(res)==0):
                     break
