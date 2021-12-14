@@ -47,25 +47,25 @@ Currently hosted on pythonanywhere.com
 ![Dashboard](https://raw.githubusercontent.com/mymi14s/django_library_management/master/screenshots/dashboard.png)
 
 ## Book List
-![Books](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/books.png)
+![Books](https://raw.githubusercontent.com/mymi14s/django_library_management/master/screenshots/books.png)
 
 ## Book Info
-![Book](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/book.png)
+![Book](https://raw.githubusercontent.com/mymi14s/django_library_management/master/screenshots/book.png)
 
 ## Issue Book
-![Issue](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/issuebook.png)
+![Issue](https://raw.githubusercontent.com/mymi14s/django_library_management/master/screenshots/issuebook.png)
 
 ## Books issued to a member
-![Issues](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/memberissues.png)
+![Issues](https://raw.githubusercontent.com/mymi14s/django_library_management/master/screenshots/memberissues.png)
 
 ## Reports Table
-![Table](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/reporttable.png)
+![Table](https://raw.githubusercontent.com/mymi14s/django_library_management/master/screenshots/reporttable.png)
 
 ## Reports Chart
-![Chart](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/reportchart.png)
+![Chart](https://raw.githubusercontent.com/mymi14s/django_library_management/master/screenshots/reportchart.png)
 
 ## Import Books
-![Import](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/import.png)
+![Import](https://raw.githubusercontent.com/mymi14s/django_library_management/master/screenshots/import.png)
 
 ## Members
-![Members](https://raw.githubusercontent.com/mymi14s/django_library_management/tree/master/screenshots/members.png)
+![Members](https://raw.githubusercontent.com/mymi14s/django_library_management/master/screenshots/members.png)
