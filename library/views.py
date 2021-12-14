@@ -246,7 +246,8 @@ def top_report(request):
         # TOP CUSTOMERS
         popular_books_query = querydb(
             """
-                SELECT b.id, t.title, b.balance, b.qty as total, sum(t.qty) as qty
+                SELECT b.id, t.title, b.balance, b.qty as total,
+                sum(t.qty) as qty, b.book_no
                 FROM library_book b
                 JOIN library_booktransaction t ON t.book_id=b.id
                 WHERE t.docstatus='Submitted'

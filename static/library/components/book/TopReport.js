@@ -53,7 +53,7 @@ app.component('top-reports', {
                         </thead>
                         <tbody>
                            <tr v-for="r in results.popular_books">
-                              <td><a :href="'/library/books/'+r.id+'/'">[% r.title %]</a></td>
+                              <td><a :href="'/library/books/'+r.book_no+'/'">[% r.title %]</a></td>
                               <td>[% r.balance %]</td>
                               <td>[% r.total %]</td>
                               <td>[% r.qty %]</td>
