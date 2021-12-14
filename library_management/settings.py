@@ -152,3 +152,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # USER APP settings
 from user.settings import *
+import django_heroku
+django_heroku.settings(locals())
