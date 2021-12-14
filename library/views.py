@@ -247,8 +247,8 @@ def top_report(request):
         popular_books_query = querydb(
             """
                 SELECT b.id, t.title, b.balance, b.qty as total, sum(t.qty) as qty
-                FROM `library_book` b
-                JOIN `library_booktransaction` t ON t.book_id=b.id
+                FROM library_book b
+                JOIN library_booktransaction t ON t.book_id=b.id
                 WHERE t.docstatus='Submitted'
                 GROUP BY t.title ORDER BY qty DESC
                 LIMIT 10
@@ -256,8 +256,9 @@ def top_report(request):
         )
         highest_paying_query = querydb(
             """
-                SELECT m.id, m.name, sum(t.rental_fee) as rfee FROM `library_booktransaction` t
-                JOIN `library_member` m ON t.member_id=m.id
+                SELECT m.id, m.name, sum(t.rental_fee) as rfee FROM
+                library_booktransaction t
+                JOIN library_member m ON t.member_id=m.id
                 WHERE t.docstatus='Submitted' AND paid=1
                 GROUP BY m.name ORDER BY rfee DESC
                 LIMIT 10
