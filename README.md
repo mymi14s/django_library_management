@@ -43,14 +43,29 @@ Currently hosted on pythonanywhere.com
 
 
 ## Screenshot
-## LOGIN
-![Login](https://github.com/mymi14s/frappevue_adminlte/blob/master/public/static/screenshoots/login.png?raw=true "Login")
+## Dashboard
+![Login](https://github.com/mymi14s/django_library_management/tree/master/screenshots/dashboard.png?raw=true "Dashboard")
 
-## DASHBOARD
-![Dashboard](https://github.com/mymi14s/frappevue_adminlte/blob/master/public/static/screenshoots/dashboard.png?raw=true "Dashboard")
+## Book List
+![Books](https://github.com/mymi14s/django_library_management/tree/master/screenshots/books.png?raw=true "Books")
 
-## INVOICES
-![Language changed](https://github.com/mymi14s/frappevue_adminlte/blob/master/public/static/screenshoots/invoices.png?raw=true "Language changed")
+## Book Info
+![Book](https://github.com/mymi14s/django_library_management/tree/master/screenshots/book.png?raw=true "Book")
 
-## INVOICE DETAIL
-![Language changed](https://github.com/mymi14s/frappevue_adminlte/blob/master/public/static/screenshoots/invoicedetail.png?raw=true "Language changed")
+## Issue Book
+![Issue](https://github.com/mymi14s/django_library_management/tree/master/screenshots/issuebook.png?raw=true "Issue")
+
+## Books issued to a member
+![Issues](https://github.com/mymi14s/django_library_management/tree/master/screenshots/memberissues.png?raw=true "Issues")
+
+## Reports Table
+![Table](https://github.com/mymi14s/django_library_management/tree/master/screenshots/reporttable.png?raw=true "Table")
+
+## Reports Chart
+![Chart](https://github.com/mymi14s/django_library_management/tree/master/screenshots/reportchart.png?raw=true "Chart")
+
+## Import Books
+![Import](https://github.com/mymi14s/django_library_management/tree/master/screenshots/import.png?raw=true "Import")
+
+## Members
+![Members](https://github.com/mymi14s/django_library_management/tree/master/screenshots/members.png?raw=true "Members")
